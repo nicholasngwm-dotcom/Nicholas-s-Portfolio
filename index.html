@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .font-display {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .font-body {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff88 0%, #00d4ff 50%, #0099ff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+    }
+
+    .grid-pattern {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(0, 255, 136, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+    }
+
+    .code-block {
+      background: rgba(0, 20, 40, 0.6);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+      font-family: 'JetBrains Mono', monospace;
+      overflow: hidden;
+    }
+
+    .neon-glow {
+      box-shadow: 0 0 30px rgba(0, 255, 136, 0.4), inset 0 0 20px rgba(0, 255, 136, 0.1);
+    }
+
+    .neon-cyan {
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-1 {
+      animation-delay: 0.1s;
+      transform: translateY(20px);
+    }
+
+    .fade-in-2 {
+      animation-delay: 0.2s;
+      transform: translateY(20px);
+    }
+
+    .fade-in-3 {
+      animation-delay: 0.3s;
+      transform: translateY(20px);
+    }
+
+    .fade-in-4 {
+      animation-delay: 0.4s;
+      transform: translateY(20px);
+    }
+
+    .fade-in-5 {
+      animation-delay: 0.5s;
+      transform: translateY(20px);
+    }
+
+    .process-line {
+      background: linear-gradient(180deg, #00ff88 0%, #00d4ff 100%);
+    }
+
+    .stat-card {
+      background: rgba(0, 30, 60, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 255, 136, 0.2);
+    }
+
+    .code-frame {
+      background: linear-gradient(145deg, rgba(0, 15, 30, 0.8) 0%, rgba(0, 25, 50, 0.8) 100%);
+      border: 1px solid rgba(0, 255, 136, 0.3);
+    }
+
+    .terminal-header {
+      background: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    .terminal-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .dot-red {
+      background: #ff5555;
+    }
+
+    .dot-yellow {
+      background: #ffff55;
+    }
+
+    .dot-green {
+      background: #55ff55;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: bold;
+      color: #001428;
+      box-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+      border: 2px solid rgba(0, 255, 136, 0.6);
+    }
+
+    .tech-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(0, 255, 136, 0.15);
+      border: 1px solid rgba(0, 255, 136, 0.4);
+      border-radius: 2px;
+      color: #00ff88;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-card {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project-image {
+      width: 100%;
+      height: 300px;
+      background: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+    }
+
+    .placeholder-item {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.6;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: #00ff88;
+      animation: blink 1s infinite;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+
+      0%,
+      49% {
+        opacity: 1;
+      }
+
+      50%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .whatsapp-logo svg {
+      filter: drop-shadow(0 0 4px rgba(34, 177, 76, 0.4));
+    }
+
+    .gitlab-logo svg {
+      filter: drop-shadow(0 0 4px rgba(252, 109, 3, 0.4));
+    }
+
+    /* Slideshow Styles */
+    .slide {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide-indicator {
+      transition: all 0.3s ease;
+    }
+
+    .slide-indicator.active {
+      background: #00d4ff;
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+
+<body class="h-full font-body">
+  <div id="app-wrapper" class="w-full h-full overflow-auto relative"
+    style="background: linear-gradient(135deg, #001428 0%, #002244 50%, #001a36 100%);">
+
+    <!-- Grid Pattern Background -->
+    <div class="grid-pattern"></div>
+
+    <div class="relative z-10">
+
+      <!-- Navigation -->
+      <nav class="fixed top-0 left-0 right-0 z-50 px-6 py-4"
+        style="background: rgba(0, 10, 20, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(0, 255, 136, 0.2);">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+          <a href="#" class="font-display font-bold text-xl text-white">$ nicholas<span
+              class="text-cyan-400">@portfolio</span></a>
+          <div class="flex gap-8">
+            <a href="#about-me"
+              class="nav-link text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium">> about</a>
+            <a href="#projects"
+              class="nav-link text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium">> projects</a>
+            <a href="#skills" class="nav-link text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium">>
+              skills</a>
+            <a href="#process"
+              class="nav-link text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium">> process</a>
+            <a href="#connect-section"
+              class="nav-link text-gray-400 hover:text-cyan-400 transition-colors text-sm font-medium">> connect</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <header class="min-h-screen flex items-center justify-center px-6 pt-20 pb-16">
+        <div class="max-w-6xl mx-auto text-center">
+          <p class="fade-in fade-in-1 text-cyan-400 font-medium mb-4 tracking-widest text-sm">//
+            DEVELOPER_PORTFOLIO_V2.0</p>
+          <h1 id="hero-title"
+            class="fade-in fade-in-2 font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-white mb-6 leading-tight">
+            nicholas<span class="text-cyan-400">@</span><br><span class="gradient-text">fullstack.dev</span>
+          </h1>
+          <p id="hero-tagline"
+            class="fade-in fade-in-3 text-gray-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed font-mono">
+            Full-stack developer skilled in Python, JavaScript, HTML, CSS, and SQL with expertise in database design,
+            security awareness, and technical documentation.
+          </p>
+          <div class="fade-in fade-in-4 flex flex-wrap justify-center gap-4">
+            <a href="#about-me"
+              class="nav-link px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-black font-semibold rounded-none hover:shadow-lg hover:shadow-cyan-500/50 transition-all neon-glow">
+              [ENTER]
+            </a>
+            <a href="#projects"
+              class="nav-link px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-semibold rounded-none hover:bg-cyan-400/10 transition-colors">
+              [PROJECTS]
+            </a>
+          </div>
+
+          <!-- Hero Visual -->
+          <div class="fade-in fade-in-5 mt-16 relative">
+            <div class="code-frame rounded-none p-0 neon-glow max-w-4xl mx-auto">
+              <div class="terminal-header">
+                <div class="terminal-dot dot-red"></div>
+                <div class="terminal-dot dot-yellow"></div>
+                <div class="terminal-dot dot-green"></div>
+                <span class="text-xs text-gray-500 ml-auto font-mono">portfolio-terminal</span>
+              </div>
+              <div
+                class="bg-gradient-to-br from-blue-950/50 to-cyan-950/50 p-8 aspect-video flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 opacity-10">
+                  <code class="text-cyan-400/20 text-xs font-mono">
+                    function fullStackDeveloper() {<br/>
+                    &nbsp;&nbsp;return { testing: true, databases: true, docs: true }<br/>
+                    }
+                  </code>
+                </div>
+                <div class="text-center z-10 font-mono">
+                  <p class="text-cyan-400 mb-2">>>> initializing...</p>
+                  <p class="text-green-400">✓ portfolio loaded</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- About Me Section -->
+      <section id="about-me" class="py-24 px-6"
+        style="background: rgba(0, 0, 0, 0.2); border-top: 1px solid rgba(0, 255, 136, 0.1); border-bottom: 1px solid rgba(0, 255, 136, 0.1);">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="text-cyan-400 font-medium mb-3 tracking-widest text-sm font-mono">// ABOUT_ME</p>
+            <h2 class="font-display font-bold text-4xl md:text-5xl text-white">//<span
+                class="text-green-400">Developer</span></h2>
+          </div>
+
+          <div class="flex flex-col items-center text-center">
+            <div class="avatar mb-8">{'<>'}</div>
+            <h3 id="designer-name" class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Full-Stack
+              Developer</h3>
+            <p id="designer-bio" class="text-gray-300 text-lg max-w-2xl mb-8 leading-relaxed font-mono">
+              A detail-oriented developer with expertise in testing, database design, and technical documentation. I
+              combine strong problem-solving skills with secure coding practices to deliver reliable, well-documented
+              solutions.
+            </p>
+
+            <!-- Skills/Expertise Grid -->
+            <div class="grid md:grid-cols-3 gap-6 w-full mt-12">
+              <div class="stat-card rounded-none p-6 card-hover neon-glow">
+                <div
+                  class="w-12 h-12 rounded-none bg-cyan-500/20 flex items-center justify-center mx-auto mb-4 border border-cyan-400/50">
+                  <svg class="w-6 h-6 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h4 class="text-cyan-400 font-semibold text-lg mb-2 font-mono">[testing]</h4>
+                <p class="text-gray-400 text-sm">Thorough testing and efficient debugging for code quality.</p>
+              </div>
+
+              <div class="stat-card rounded-none p-6 card-hover neon-glow">
+                <div
+                  class="w-12 h-12 rounded-none bg-green-500/20 flex items-center justify-center mx-auto mb-4 border border-green-400/50">
+                  <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                  </svg>
+                </div>
+                <h4 class="text-green-400 font-semibold text-lg mb-2 font-mono">[databases]</h4>
+                <p class="text-gray-400 text-sm">Efficient database design with SQL optimization.</p>
+              </div>
+
+              <div class="stat-card rounded-none p-6 card-hover neon-glow">
+                <div
+                  class="w-12 h-12 rounded-none bg-blue-500/20 flex items-center justify-center mx-auto mb-4 border border-blue-400/50">
+                  <svg class="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                </div>
+                <h4 class="text-blue-400 font-semibold text-lg mb-2 font-mono">[documentation]</h4>
+                <p class="text-gray-400 text-sm">Clear docs and comments for maintainable code.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="text-green-400 font-medium mb-3 tracking-widest text-sm font-mono">// PORTFOLIO</p>
+            <h2 class="font-display font-bold text-4xl md:text-5xl text-white">//<span class="text-green-400">Featured
+                Projects</span></h2>
+          </div>
+
+          <!-- Project Card -->
+          <div class="card-hover stat-card rounded-none overflow-hidden neon-glow mb-12">
+            <!-- Project Content -->
+            <div class="p-8 border-b border-cyan-400/20">
+              <h3 class="font-display font-bold text-2xl text-white mb-3 font-mono">Automating Initial WhatsApp Sales
+              </h3>
+
+              <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+                A comprehensive sales automation platform designed to streamline customer interactions on WhatsApp by
+                integrating an AI Auto-Reply Engine with structured lead management. Features include intelligent
+                inquiry response, centralized management dashboard, customer profiling, lead scoring with smart
+                prioritization, and comprehensive reporting analytics.
+              </p>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+              </div>
+            </div>
+
+            <!-- Project Slideshow -->
+            <div class="p-8 bg-gradient-to-b from-transparent to-black/10">
+              <p class="text-cyan-400 font-mono text-sm mb-6 font-semibold">$ project_screenshots --carousel</p>
+
+              <!-- Slideshow Container -->
+              <div class="relative w-full mb-8">
+                <div
+                  class="slideshow-container relative w-full rounded-none overflow-hidden border border-cyan-400/30 bg-black/40"
+                  style="aspect-ratio: 16/9;">
+
+                  <!-- Slides 1-12 -->
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Admin_Dashboard.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">2/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Admin_Dashboard2.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">3/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Admin_Dashboard3.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">4/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Customer_Directory.png" alt="Project Screenshot"
+                      class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">5/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Customer_Directory2.png" alt="Project Screenshot"
+                      class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">6/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Autoreply_Template_Manager.png" alt="Project Screenshot"
+                      class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">7/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Chat_History.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">8/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Inquiry_Repository.png" alt="Project Screenshot"
+                      class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">9/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Managing_Accounts.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">10/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Editing_Profile.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">11/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/Application_Settings.png" alt="Project Screenshot"
+                      class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">12/12</span>
+                  </div>
+
+                  <div
+                    class="slide fade-slide absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-500"
+                    data-slide="0">
+
+                    <img src="Images/LogIn_Page.png" alt="Project Screenshot" class="w-full h-full object-cover">
+
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-cyan-400 font-mono text-xs">1/12</span>
+                  </div>
+
+                  <!-- Navigation Buttons -->
+                  <button
+                    class="prev-slide absolute left-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-cyan-400/20 hover:bg-cyan-400/40 rounded-none flex items-center justify-center text-white transition-colors border border-cyan-400/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button
+                    class="next-slide absolute right-4 top-1/2 transform -translate-y-1/2 z-10 w-10 h-10 bg-cyan-400/20 hover:bg-cyan-400/40 rounded-none flex items-center justify-center text-white transition-colors border border-cyan-400/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+
+                <!-- Slide Indicators -->
+                <div class="flex justify-center gap-2 mt-4 flex-wrap">
+                  <div class="slide-indicator active w-2 h-2 rounded-full bg-cyan-400 cursor-pointer" data-index="0">
+                  </div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="1"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="2"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="3"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="4"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="5"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="6"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="7"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="8"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="9"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="10"></div>
+                  <div class="slide-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer" data-index="11"></div>
+                </div>
+              </div>
+
+              <div class="mb-6 flex items-center justify-between border-b border-green-400/30 pb-2">
+                <div class="flex items-center gap-3">
+                  <div class="w-2 h-2 bg-green-400 animate-pulse"></div>
+                  <h2 class="text-xl font-mono font-bold text-green-400 tracking-wider uppercase">
+                    Highlighted Functions <span class="text-cyan-400 text-sm font-normal">// My Contributions</span>
+                  </h2>
+                </div>
+                <div class="text-xs font-mono text-green-400/50 hidden md:block">
+                  SYSTEM_CORE_MODULES.sh
+                </div>
+              </div>
+
+              <div class="relative w-full mb-8 group">
+                <div
+                  class="contrib-container relative w-full rounded-none overflow-hidden border border-green-400/30 bg-black/40"
+                  style="aspect-ratio: 16/9;">
+
+                  <div
+                    class="contrib-slide absolute inset-0 transition-opacity duration-500 ease-in-out opacity-100 z-10"
+                    data-index="0">
+                    <img src="Highlighted_Images/NewRule_Config.png" alt="Logic Engine"
+                      class="w-full h-full object-cover brightness-110">
+
+                    <div
+                      class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
+                      <h3 class="text-green-400 font-mono text-xl font-bold mb-1">> 01_LOGIC_ENGINE</h3>
+                      <p class="text-gray-200 font-mono text-xs md:text-sm leading-relaxed max-w-2xl">
+                        Architected a dynamic, drag-and-drop rule engine. Allows users to define complex lead
+                        qualification criteria without writing code.
+                      </p>
+                    </div>
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-green-400 font-mono text-xs">1/3</span>
+                  </div>
+
+                  <div class="contrib-slide absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 z-0"
+                    data-index="1">
+                    <img src="Highlighted_Images/Inquiry_management_leadscoring.png" alt="Value Algorithm"
+                      class="w-full h-full object-cover brightness-110">
+
+                    <div
+                      class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
+                      <h3 class="text-green-400 font-mono text-xl font-bold mb-1">> 02_VALUE_ALGORITHM</h3>
+                      <p class="text-gray-200 font-mono text-xs md:text-sm leading-relaxed max-w-2xl">
+                        Developed the backend math that assigns weights to lead behaviors, balancing demographic data
+                        with real-time engagement triggers.
+                      </p>
+                    </div>
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-green-400 font-mono text-xs">2/3</span>
+                  </div>
+
+                  <div class="contrib-slide absolute inset-0 transition-opacity duration-500 ease-in-out opacity-0 z-0"
+                    data-index="3">
+                    <img src="Highlighted_Images/Leadscoring_Dashboard.png" alt="Command Center"
+                      class="w-full h-full object-cover brightness-110">
+
+                    <div
+                      class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black via-black/90 to-transparent">
+                      <h3 class="text-green-400 font-mono text-xl font-bold mb-1">> 03_COMMAND_CENTER</h3>
+                      <p class="text-gray-200 font-mono text-xs md:text-sm leading-relaxed max-w-2xl">
+                        Engineered a central dashboard for full CRUD management of scoring rules and real-time data
+                        tracking.
+                      </p>
+                    </div>
+                    <span
+                      class="absolute top-3 right-3 bg-black/70 px-3 py-1 rounded text-green-400 font-mono text-xs">3/3</span>
+                  </div>
+
+                  <button onclick="moveContribSlide(-1)"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 w-10 h-10 bg-green-400/20 hover:bg-green-400/40 rounded-none flex items-center justify-center text-white transition-colors border border-green-400/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <button onclick="moveContribSlide(1)"
+                    class="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 w-10 h-10 bg-green-400/20 hover:bg-green-400/40 rounded-none flex items-center justify-center text-white transition-colors border border-green-400/50">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+
+                <div class="flex justify-center gap-2 mt-4 flex-wrap">
+                  <div class="contrib-indicator w-2 h-2 rounded-full bg-green-400 cursor-pointer"
+                    onclick="goToContribSlide(0)"></div>
+                  <div class="contrib-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer"
+                    onclick="goToContribSlide(1)"></div>
+                  <div class="contrib-indicator w-2 h-2 rounded-full bg-gray-600 cursor-pointer"
+                    onclick="goToContribSlide(2)"></div>
+                </div>
+              </div>
+
+              <!-- Add More Projects Notice -->
+              <div class="mt-12 text-center font-mono text-green-400">
+                <p>$ echo "More projects coming soon..."</p>
+              </div>
+            </div>
+      </section>
+
+      <!-- Skills Section -->
+      <section id="skills" class="py-24 px-6"
+        style="background: rgba(0, 0, 0, 0.2); border-top: 1px solid rgba(0, 255, 136, 0.1); border-bottom: 1px solid rgba(0, 255, 136, 0.1);">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="text-cyan-400 font-medium mb-3 tracking-widest text-sm font-mono">// EXPERTISE</p>
+            <h2 id="skills-heading" class="font-display font-bold text-4xl md:text-5xl text-white">//<span
+                class="text-cyan-400">Skills & Technologies</span></h2>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-12">
+            <!-- Professional Skills -->
+            <div class="stat-card rounded-none p-8 neon-glow">
+              <h3 class="text-cyan-400 font-display font-bold text-2xl mb-6 font-mono">[professional_skills]</h3>
+              <div class="space-y-4">
+                <div>
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Testing & Debugging</h4>
+                  <p class="text-gray-400 text-sm mb-3">Comprehensive testing strategies and bug identification.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Database Management</h4>
+                  <p class="text-gray-400 text-sm mb-3">SQL optimization, schema design, and data integrity.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Documentation</h4>
+                  <p class="text-gray-400 text-sm mb-3">API docs, code comments, and architecture guides.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Security</h4>
+                  <p class="text-gray-400 text-sm mb-3">Secure coding practices and vulnerability prevention.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Communication</h4>
+                  <p class="text-gray-400 text-sm mb-3">Clear technical communication with teams.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <h4 class="text-green-400 font-semibold mb-3 font-mono">Problem Solving</h4>
+                  <p class="text-gray-400 text-sm mb-3">Logical thinking and creative solutions.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Coding Languages -->
+            <div class="stat-card rounded-none p-8 neon-cyan">
+              <h3 class="text-cyan-400 font-display font-bold text-2xl mb-6 font-mono">[coding_languages]</h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-blue-500/30 flex items-center justify-center font-bold text-blue-300 text-sm font-mono border border-blue-400">
+                      Py</div>
+                    <h4 class="text-white font-semibold font-mono">Python</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">Backend development, scripting, data processing.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-yellow-500/30 flex items-center justify-center font-bold text-yellow-300 text-sm font-mono border border-yellow-400">
+                      JS</div>
+                    <h4 class="text-white font-semibold font-mono">JavaScript</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">Frontend development, interactive features.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-red-500/30 flex items-center justify-center font-bold text-red-300 text-sm font-mono border border-red-400">
+                      H</div>
+                    <h4 class="text-white font-semibold font-mono">HTML</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">Semantic markup, responsive structure.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-cyan-500/30 flex items-center justify-center font-bold text-cyan-300 text-sm font-mono border border-cyan-400">
+                      C</div>
+                    <h4 class="text-white font-semibold font-mono">CSS</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">Styling, animations, responsive design.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-orange-500/30 flex items-center justify-center font-bold text-orange-300 text-sm font-mono border border-orange-400">
+                      SQL</div>
+                    <h4 class="text-white font-semibold font-mono">SQL</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">Queries, optimization, management.</p>
+                </div>
+                <div class="border-t border-cyan-400/20 pt-4">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div
+                      class="w-10 h-10 rounded-none bg-red-600/30 flex items-center justify-center font-bold text-red-300 text-sm font-mono border border-red-400">
+                      J</div>
+                    <h4 class="text-white font-semibold font-mono">Java</h4>
+                  </div>
+                  <p class="text-gray-400 text-sm ml-13">OOP, enterprise applications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process Section -->
+      <section id="process" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center mb-16">
+            <p class="text-green-400 font-medium mb-3 tracking-widest text-sm font-mono">// WORKFLOW</p>
+            <h2 id="process-heading" class="font-display font-bold text-4xl md:text-5xl text-white">//<span
+                class="text-green-400">Development Process</span></h2>
+          </div>
+
+          <div class="relative">
+            <!-- Timeline Line -->
+            <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px process-line transform -translate-x-1/2">
+            </div>
+
+            <!-- Process Steps -->
+            <div class="space-y-12 md:space-y-24">
+
+              <!-- Step 1 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 md:text-right md:pr-12">
+                  <div class="card-hover stat-card rounded-none p-8 neon-glow">
+                    <div
+                      class="inline-flex items-center justify-center w-12 h-12 rounded-none bg-cyan-500/20 text-cyan-400 font-display font-bold mb-4 border border-cyan-400">
+                      01</div>
+                    <h3 class="text-cyan-400 font-display font-semibold text-xl mb-3 font-mono">Understand Requirements
+                    </h3>
+                    <p class="text-gray-400">Analyze thoroughly and communicate with stakeholders to ensure complete
+                      understanding.</p>
+                  </div>
+                </div>
+                <div
+                  class="hidden md:flex w-4 h-4 rounded-full bg-cyan-400 absolute left-1/2 transform -translate-x-1/2 shadow-lg shadow-cyan-400/50">
+                </div>
+                <div class="md:w-1/2 md:pl-12"></div>
+              </div>
+
+              <!-- Step 2 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 md:pr-12"></div>
+                <div
+                  class="hidden md:flex w-4 h-4 rounded-full bg-green-400 absolute left-1/2 transform -translate-x-1/2 shadow-lg shadow-green-400/50">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                  <div class="card-hover stat-card rounded-none p-8 neon-glow">
+                    <div
+                      class="inline-flex items-center justify-center w-12 h-12 rounded-none bg-green-500/20 text-green-400 font-display font-bold mb-4 border border-green-400">
+                      02</div>
+                    <h3 class="text-green-400 font-display font-semibold text-xl mb-3 font-mono">Design Architecture
+                    </h3>
+                    <p class="text-gray-400">Plan system architecture, database schema, and technology stack with
+                      security in mind.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 md:text-right md:pr-12">
+                  <div class="card-hover stat-card rounded-none p-8 neon-glow">
+                    <div
+                      class="inline-flex items-center justify-center w-12 h-12 rounded-none bg-cyan-500/20 text-cyan-400 font-display font-bold mb-4 border border-cyan-400">
+                      03</div>
+                    <h3 class="text-cyan-400 font-display font-semibold text-xl mb-3 font-mono">Implementation</h3>
+                    <p class="text-gray-400">Write clean, well-documented code following best practices and security
+                      standards.</p>
+                  </div>
+                </div>
+                <div
+                  class="hidden md:flex w-4 h-4 rounded-full bg-cyan-400 absolute left-1/2 transform -translate-x-1/2 shadow-lg shadow-cyan-400/50">
+                </div>
+                <div class="md:w-1/2 md:pl-12"></div>
+              </div>
+
+              <!-- Step 4 -->
+              <div class="relative flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/2 md:pr-12"></div>
+                <div
+                  class="hidden md:flex w-4 h-4 rounded-full bg-green-400 absolute left-1/2 transform -translate-x-1/2 shadow-lg shadow-green-400/50">
+                </div>
+                <div class="md:w-1/2 md:pl-12">
+                  <div class="card-hover stat-card rounded-none p-8 neon-glow">
+                    <div
+                      class="inline-flex items-center justify-center w-12 h-12 rounded-none bg-green-500/20 text-green-400 font-display font-bold mb-4 border border-green-400">
+                      04</div>
+                    <h3 class="text-green-400 font-display font-semibold text-xl mb-3 font-mono">Testing & Deploy</h3>
+                    <p class="text-gray-400">Rigorous testing, debugging, and documentation before deployment.</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Connect Section -->
+      <section id="connect-section" class="py-24 px-6"
+        style="background: rgba(0, 0, 0, 0.2); border-top: 1px solid rgba(0, 255, 136, 0.1);">
+        <div class="max-w-6xl mx-auto text-center font-mono">
+          <p class="font-display font-bold text-2xl text-cyan-400 mb-4">$ connect_with_me</p>
+          <p class="text-gray-400 mb-8">Interested in collaboration or learning more?</p>
+
+          <!-- Contact Info -->
+          <div class="flex flex-col items-center justify-center gap-4 mb-12">
+            <a href="mailto:nicholasngwm@gmail.com"
+              class="text-cyan-400 hover:text-green-400 transition-colors font-mono text-sm">
+              📧 nicholasngwm@gmail.com
+            </a>
+            <a href="tel:+6597362533" class="text-cyan-400 hover:text-green-400 transition-colors font-mono text-sm">
+              📱 +65 9736 2533
+            </a>
+          </div>
+
+          <!-- Social Links -->
+          <div class="flex justify-center gap-4 flex-wrap mb-12">
+            <!-- LinkedIn -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-cyan-400/10 hover:bg-cyan-400/20 transition-colors flex items-center justify-center text-gray-400 hover:text-cyan-400 border border-cyan-400/50"
+              title="LinkedIn">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-green-400/10 hover:bg-green-400/20 transition-colors flex items-center justify-center text-gray-400 hover:text-green-400 border border-green-400/50"
+              title="GitHub">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+              </svg>
+            </a>
+
+            <!-- Twitter -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-blue-400/10 hover:bg-blue-400/20 transition-colors flex items-center justify-center text-gray-400 hover:text-blue-400 border border-blue-400/50"
+              title="Twitter">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+              </svg>
+            </a>
+
+            <!-- WhatsApp -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-green-500/10 hover:bg-green-500/20 transition-colors flex items-center justify-center text-gray-400 hover:text-green-500 border border-green-500/50 whatsapp-logo"
+              title="WhatsApp">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.968 1.495c-2.948 1.65-4.735 4.656-4.72 7.87.015 3.215 1.817 6.18 4.979 7.75 1.33.61 2.75.941 4.19.941h.004c3.898 0 7.267-1.576 9.824-4.44C22.99 19.431 24 16.3 24 13c0-.855-.085-1.702-.256-2.522-1.497-9.86-10.064-16.625-20.364-15.128C2.39.795 0 3.94 0 7.5c0 3.2 1.5 6.25 4.07 8.3.915-1.09 2.145-1.947 3.404-2.547.04-.024.08-.049.12-.073z" />
+              </svg>
+            </a>
+
+            <!-- Instagram -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-pink-400/10 hover:bg-pink-400/20 transition-colors flex items-center justify-center text-gray-400 hover:text-pink-400 border border-pink-400/50"
+              title="Instagram">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.117.6c-.694.27-1.286.645-1.855 1.213-.567.569-.942 1.16-1.213 1.855-.27.788-.471 1.659-.54 2.937C.015 8.333 0 8.74 0 12c0 3.26.015 3.667.072 4.947.06 1.277.261 2.148.53 2.913.3.765.673 1.325 1.24 1.893.566.566 1.129.94 1.895 1.239.766.27 1.636.471 2.914.536 1.28.06 1.687.072 4.947.072s3.667-.015 4.947-.072c1.28-.065 2.144-.266 2.912-.536.766-.3 1.33-.674 1.896-1.239.566-.569.94-1.134 1.239-1.896.271-.772.472-1.643.537-2.913.058-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.065-1.28-.266-2.144-.536-2.914-.3-.766-.674-1.329-1.239-1.895-.569-.566-1.133-.94-1.896-1.239-.768-.27-1.643-.472-2.913-.537C15.667.015 15.26 0 12 0zm0 2.16c3.203 0 3.585.009 4.849.07 1.171.054 1.805.244 2.227.408.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.354 1.057.408 2.227.06 1.264.07 1.646.07 4.849s-.01 3.585-.07 4.849c-.054 1.171-.244 1.805-.408 2.227-.217.562-.477.96-.896 1.382-.42.419-.819.679-1.381.896-.422.164-1.057.354-2.227.408-1.264.06-1.646.07-4.849.07s-3.585-.01-4.849-.07c-1.171-.054-1.805-.244-2.227-.408-.562-.217-.96-.477-1.382-.896-.419-.42-.679-.819-.896-1.381-.164-.422-.354-1.057-.408-2.227-.06-1.264-.07-1.646-.07-4.849s.01-3.585.07-4.849c.054-1.171.244-1.805.408-2.227.217-.562.477-.96.896-1.382.42-.419.819-.679 1.381-.896.422-.164 1.057-.354 2.227-.408 1.264-.06 1.646-.07 4.849-.07zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.322a1.44 1.44 0 1102.88 0 1.44 1.44 0 01-2.88 0z" />
+              </svg>
+            </a>
+
+            <!-- GitLab -->
+            <a href="#"
+              class="w-12 h-12 rounded-none bg-orange-400/10 hover:bg-orange-400/20 transition-colors flex items-center justify-center text-gray-400 hover:text-orange-400 border border-orange-400/50 gitlab-logo"
+              title="GitLab">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0C5.925 0 .5 5.925.5 12c0 5.037 3.479 9.292 8.207 10.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.959-.267 1.982-.4 3.003-.405 1.02.005 2.047.138 3.006.405 2.291-1.553 3.297-1.232 3.297-1.232.652 1.653.241 2.873.118 3.176.768.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.194.694.801.576C19.521 21.792 23.5 17.537 23.5 12c0-6.075-5.425-11.5-12-11.5z" />
+              </svg>
+            </a>
+          </div>
+
+          <p class="text-gray-600 text-sm mt-8">© 2024 Nicholas Portfolio | build v2.0</p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const defaultConfig = {
+      designer_name: 'Full-Stack Developer',
+      designer_bio: 'A detail-oriented developer with expertise in testing, database design, and technical documentation. I combine strong problem-solving skills with secure coding practices to deliver reliable, well-documented solutions.',
+      project_title: "nicholas@fullstack.dev",
+      project_tagline: 'Full-stack developer skilled in Python, JavaScript, HTML, CSS, and SQL with expertise in database design, security awareness, and technical documentation.',
+      about_heading: 'Creating Meaningful Digital Solutions',
+      about_description: 'Specializing in building scalable, secure, and well-documented applications with strong testing practices and database design.',
+      role_title: 'Full-Stack Developer',
+      process_heading: 'My Process',
+      results_heading: 'What I Bring',
+      background_color: '#001428',
+      surface_color: 'rgba(0, 30, 60, 0.5)',
+      text_color: '#ffffff',
+      primary_action_color: '#00d4ff',
+      secondary_action_color: '#00ff88',
+      font_family: 'IBM Plex Mono',
+      font_size: 16
+    };
+
+    // Slideshow functionality
+    let currentSlide = 0;
+    const totalSlides = 12;
+    const slideInterval = 6500; // 6.5 seconds
+
+    function showSlide(index) {
+      const slides = document.querySelectorAll('.slide');
+      const indicators = document.querySelectorAll('.slide-indicator');
+
+      // Normalize index
+      currentSlide = (index + totalSlides) % totalSlides;
+
+      // Update slides
+      slides.forEach((slide, i) => {
+        if (i === currentSlide) {
+          slide.classList.remove('opacity-0');
+          slide.classList.add('opacity-100');
+        } else {
+          slide.classList.add('opacity-0');
+          slide.classList.remove('opacity-100');
+        }
+      });
+
+      // Update indicators
+      indicators.forEach((indicator, i) => {
+        if (i === currentSlide) {
+          indicator.classList.add('active');
+          indicator.classList.remove('bg-gray-600');
+          indicator.classList.add('bg-cyan-400');
+        } else {
+          indicator.classList.remove('active');
+          indicator.classList.add('bg-gray-600');
+          indicator.classList.remove('bg-cyan-400');
+        }
+      });
+    }
+
+    // Auto-rotate slides
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      showSlide(currentSlide);
+    }, slideInterval);
+
+    // Navigation buttons
+    document.querySelector('.prev-slide').addEventListener('click', () => {
+      showSlide(currentSlide - 1);
+    });
+
+    document.querySelector('.next-slide').addEventListener('click', () => {
+      showSlide(currentSlide + 1);
+    });
+
+    // Indicator clicks
+    document.querySelectorAll('.slide-indicator').forEach(indicator => {
+      indicator.addEventListener('click', () => {
+        const index = parseInt(indicator.dataset.index);
+        showSlide(index);
+      });
+    });
+
+    // Handle smooth scrolling with preventDefault
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.nav-link');
+      if (link && link.getAttribute('href').startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+
+    // --- Contribution Slideshow Logic ---
+    let contribIndex = 0;
+    const cSlides = document.querySelectorAll('.contrib-slide');
+    const cIndicators = document.querySelectorAll('.contrib-indicator');
+
+    function updateContribVisuals() {
+      // 1. Update Slides
+      cSlides.forEach((slide, idx) => {
+        if (idx === contribIndex) {
+          slide.classList.remove('opacity-0', 'z-0');
+          slide.classList.add('opacity-100', 'z-10');
+        } else {
+          slide.classList.remove('opacity-100', 'z-10');
+          slide.classList.add('opacity-0', 'z-0');
+        }
+      });
+
+      // 2. Update Indicators
+      cIndicators.forEach((dot, idx) => {
+        if (idx === contribIndex) {
+          dot.classList.remove('bg-gray-600');
+          dot.classList.add('bg-green-400');
+        } else {
+          dot.classList.remove('bg-green-400');
+          dot.classList.add('bg-gray-600');
+        }
+      });
+    }
+
+    function moveContribSlide(direction) {
+      contribIndex += direction;
+      if (contribIndex >= cSlides.length) contribIndex = 0;
+      if (contribIndex < 0) contribIndex = cSlides.length - 1;
+      updateContribVisuals();
+    }
+
+    function goToContribSlide(index) {
+      contribIndex = index;
+      updateContribVisuals();
+    }
+
+    async function onConfigChange(config) {
+      // Update designer info
+      document.getElementById('designer-name').textContent = config.designer_name || defaultConfig.designer_name;
+      document.getElementById('designer-bio').textContent = config.designer_bio || defaultConfig.designer_bio;
+
+      // Update hero section
+      document.getElementById('hero-tagline').textContent = config.project_tagline || defaultConfig.project_tagline;
+
+      // Update about section
+      document.getElementById('about-heading').textContent = config.about_heading || defaultConfig.about_heading;
+      document.getElementById('about-description').textContent = config.about_description || defaultConfig.about_description;
+
+      // Update process section
+      document.getElementById('process-heading').textContent = config.process_heading || defaultConfig.process_heading;
+
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'monospace';
+      document.querySelectorAll('.font-display').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, ${baseFontStack}`;
+      });
+
+      // Apply font size
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['designer_name', config.designer_name || defaultConfig.designer_name],
+        ['designer_bio', config.designer_bio || defaultConfig.designer_bio],
+        ['project_title', config.project_title || defaultConfig.project_title],
+        ['project_tagline', config.project_tagline || defaultConfig.project_tagline],
+        ['about_heading', config.about_heading || defaultConfig.about_heading],
+        ['about_description', config.about_description || defaultConfig.about_description],
+        ['role_title', config.role_title || defaultConfig.role_title],
+        ['process_heading', config.process_heading || defaultConfig.process_heading],
+        ['results_heading', config.results_heading || defaultConfig.results_heading]
+      ]);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+  <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9cf3d91fb0770fe2',t:'MTc3MTMxNjI0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
